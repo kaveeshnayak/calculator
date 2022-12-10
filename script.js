@@ -6,6 +6,9 @@ let temp=''
 let operator=''
 let allSymbols=["+", "-", "×", "%", "±", "C", "=", "÷"]
 let btnValueIsSymbol=false
+let result=""
+
+
 //populateDisplay()
 
 document.getElementById("clear").addEventListener("click", function(e){
@@ -13,28 +16,27 @@ firstvalue=""
 secondvalue=""
 btnValueIsSymbol=false
 displayValue="0"
+result=""
 populateDisplay()
 })
 document.getElementById("sign").addEventListener("click", function(e){
    if(btnValueIsSymbol){
-      if (displayValue=="0"){
-         displayValue="-"
-      }
+      if(displayValue.includes("-")==false){
+      displayValue="-"+displayValue
+      secondvalue=displayValue}
       else{
-      displayValue = (displayValue)*(-1)
-      
-      }
+         displayValue=displayValue.replace("-","")
       secondvalue=displayValue
+      }
    }
    if(!btnValueIsSymbol){
-      if (displayValue=="0"){
-         displayValue="-"
-      }
-      else{
-      displayValue = (displayValue)*(-1)
-      
-      }
-      firstvalue=displayValue
+      if(displayValue.includes("-")==false){
+         displayValue="-"+displayValue
+         firstvalue=displayValue}
+         else{
+            displayValue=displayValue.replace("-","")
+         firstvalue=displayValue
+         }
    }
 populateDisplay()
 })
@@ -137,12 +139,46 @@ if(firstvalue!="" && btnValueIsSymbol==true && secondvalue!=null){
 })
 
 
+window.addEventListener("keydown",function(e){if(e.key=="Backspace"){
+   displayValue=displayValue.slice(0,-1)
+   populateDisplay()
+}
+
+})
+window.addEventListener('keydown', function (e) {if(e.key=="1"||e.key=="2"||e.key=="3"||e.key=="4"||e.key=="5"||e.key=="6"||e.key=="7"||e.key=="8"||e.key=="9"||e.key=="0"){
+   if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
+      if(secondvalue=="" ){{displayValue=""}}
+      if (displayValue=="0"){
+         displayValue=e.key
+      }
+      else{
+      displayValue = displayValue+e.key
+      
+      }
+         secondvalue=displayValue
+}
 
 
+   if(!btnValueIsSymbol){
+      if (displayValue=="0"){
+         displayValue=e.key
+      }
+      else{
+      displayValue = displayValue+e.key
+      
+      }
+      firstvalue=displayValue
+   }
+
+   //displayValue = `You pressed ${e.key}`;
+   populateDisplay()
+ }}, false);
 
 document.getElementById("one").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){if(displayValue.toString().includes(".")==false){displayValue=""}}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="1"
       }
@@ -150,12 +186,7 @@ document.getElementById("one").addEventListener("click", function(e){
       displayValue = displayValue+"1"
       
       }
-      if(displayValue.toString().includes(".")==false){
-      secondvalue=displayValue}
-      else{
-         firstvalue=displayValue
-      }
-   
+         secondvalue=displayValue
 }
 
 
@@ -175,7 +206,9 @@ document.getElementById("one").addEventListener("click", function(e){
 })
 document.getElementById("two").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="2"
       }
@@ -205,7 +238,9 @@ document.getElementById("two").addEventListener("click", function(e){
 document.getElementById("three").addEventListener("click", function(e){
 
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="3"
       }
@@ -235,7 +270,9 @@ document.getElementById("three").addEventListener("click", function(e){
 })
 document.getElementById("four").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="4"
       }
@@ -265,7 +302,9 @@ document.getElementById("four").addEventListener("click", function(e){
 })
 document.getElementById("five").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="5"
       }
@@ -295,7 +334,9 @@ document.getElementById("five").addEventListener("click", function(e){
 })
 document.getElementById("six").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue==""){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="6"
       }
@@ -325,7 +366,9 @@ document.getElementById("six").addEventListener("click", function(e){
 })
 document.getElementById("seven").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="7"
       }
@@ -354,7 +397,9 @@ document.getElementById("seven").addEventListener("click", function(e){
 })
 document.getElementById("eight").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="8"
       }
@@ -383,7 +428,9 @@ document.getElementById("eight").addEventListener("click", function(e){
 })
 document.getElementById("zero").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="0"
       }
@@ -412,7 +459,9 @@ document.getElementById("zero").addEventListener("click", function(e){
 })
 document.getElementById("nine").addEventListener("click", function(e){
    if(btnValueIsSymbol && displayValue!="" && firstvalue!=""){
-      if(secondvalue=="" ){displayValue=""}
+      if(secondvalue=="" ){
+         {displayValue=""}
+         }
       if (displayValue=="0"){
          displayValue="9"
       }
@@ -444,6 +493,7 @@ document.getElementById("dot").addEventListener("click", function(e){
 if((displayValue.toString()).includes(".")==true){
    null
 }else{
+   
          if (displayValue=="0"){
          displayValue="."
       }
@@ -451,8 +501,8 @@ if((displayValue.toString()).includes(".")==true){
       displayValue = displayValue+"."
       
       }
+
       
-   
 }
 
 
@@ -462,8 +512,18 @@ if((displayValue.toString()).includes(".")==true){
 
 
 let populateDisplay  = function(){
-let display=document.getElementById("show")
-display.innerText=displayValue;
+   if(Number.isNaN(displayValue)){
+      displayValue="Error"
+   }
+   let dp=displayValue.toString()
+   let length=dp.length
+   if (length>9){
+      console.log(displayValue.length)
+      displayValue=displayValue.slice(0, 9)
+   }
+   let display=document.getElementById("show")
+   display.innerText=displayValue;
+
 }
 
 populateDisplay()
@@ -472,7 +532,7 @@ let calculate=function(){
    if(secondvalue){
    firstvalue=parseFloat(firstvalue)
    secondvalue=parseFloat(secondvalue)
-   let result = ''
+   result = ''
    if (symbol == "+"){
       result = firstvalue+secondvalue
       displayValue=result
@@ -495,11 +555,13 @@ let calculate=function(){
       populateDisplay() 
    }
    if (symbol == "÷"){
+     
       result = firstvalue/secondvalue
       displayValue=result
       firstvalue=result
       secondvalue=''
       populateDisplay() 
+      
    }
    if (symbol == "%"){
       result = firstvalue%secondvalue
